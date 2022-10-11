@@ -17,7 +17,6 @@ return new class extends Migration
             $table->id();
             $table->morphs('photo');
             $table->string('src');
-            $table->string('target')->nullable();
             $table->timestamps();
         });
     }
