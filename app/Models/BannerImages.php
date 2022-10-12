@@ -15,7 +15,7 @@ class BannerImages extends Model
     protected $guarded=[];
 
     public function images(){
-        return $this->morphMany(Photos::class, 'photos');
+        return $this->morphMany(Photos::class, 'photo');
     }
     public function offer(){
         return $this->belongsTo(OfferProducts::class);

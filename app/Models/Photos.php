@@ -11,7 +11,7 @@ class Photos extends Model
     use HasFactory;
     protected $guarded=[];
 
-    public function photos(){
+    public function photo(){
         return $this->morphTo();
     }
 }

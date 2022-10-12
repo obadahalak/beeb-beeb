@@ -14,6 +14,6 @@ class Section extends Model
     public $translatable = ['name'];
 
     public function image(){
-        return $this->morphOne(Photos::class, 'photos');
+        return $this->morphOne(Photos::class, 'photo');
     }
 }

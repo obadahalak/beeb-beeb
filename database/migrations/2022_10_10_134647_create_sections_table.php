@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('sections', function (Blueprint $table) {
             $table->id();
-            $table->enum('name',['restaurant','Market','Mull']);
+            $table->string('name');
         ///    $table->string('image');
             $table->timestamps();
         });
