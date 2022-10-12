@@ -17,7 +17,8 @@ class CategoryProductsFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'section_id'=>1,
+            'name'=>'mainCategory'
         ];
     }
 }

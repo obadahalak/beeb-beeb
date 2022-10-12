@@ -17,7 +17,10 @@ class OwnersFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'fname'=>fake()->name(),
+            'lname'=>fake()->name(),
+            'email'=>fake()->email(),
+            'phone'=>'87654123',
         ];
     }
 }

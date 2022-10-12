@@ -10,8 +10,9 @@ class Photos extends Model
 {
     use HasFactory;
     protected $guarded=[];
+    protected $table='photos';
 
-    public function photos(){
+    public function photo(){
         return $this->morphTo();
     }
 }

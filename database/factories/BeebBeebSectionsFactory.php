@@ -16,8 +16,24 @@ class BeebBeebSectionsFactory extends Factory
      */
     public function definition()
     {
+
+        $time=[
+            'open_time'=>now()->format('h:m'),
+            'close_time'=>now()->addHours(2)->format('h:m'),
+        ];
         return [
-            //
+            'owners_id' =>1,
+            'section_id'=>2,
+            'name'=>'New market',
+            'phone'=>'1234567',
+            'lat'=>'-76.82452',
+            'long'=>'160.14189',
+            'address'=>'syraia-damascus',
+            'description'=>fake()->text(30),
+            'time'=>$time,
+            'delivery'=> json_encode('delivery-data'),
+            'is_open'=>1,
+            'stauts'=>false
         ];
     }
 }

@@ -9,7 +9,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Drivers extends Model
 {
     use HasFactory;
+
     protected $guarded=[];
+
     public function image(){
         return $this->morphOne(Photos::class, 'photos');
     }
