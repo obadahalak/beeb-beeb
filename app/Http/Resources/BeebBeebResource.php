@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Http\Resources\ImageResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class BeebBeebResource extends JsonResource
@@ -23,7 +24,8 @@ class BeebBeebResource extends JsonResource
             'long' =>$this->long,
             'description'=>$this->description,
             'time'=>$this->time,
-            'image'=>$this->image->src
+            // 'logo'=>$this->image->src,
+            'images'=>ImageResource::collection($this->images),
         ];
     }
 }
