@@ -13,6 +13,6 @@ class Drivers extends Model
     protected $guarded=[];
 
     public function image(){
-        return $this->morphOne(Photos::class, 'photos');
+        return $this->morphOne(Photos::class, 'photo');
     }
 }
