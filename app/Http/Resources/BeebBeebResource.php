@@ -27,7 +27,7 @@ class BeebBeebResource extends JsonResource
             'long' =>$this->long,
             'description'=>$this->description,
             'rating'=>$this->getRating(nameSections::beebSection->value,$this->id),
-            // 'offer'=>'',
+            'offer'=>$this->offer && $this->offer->status ? ($this->offer) : false,
             'time'=>$this->time,
             'images'=>ImageResource::collection($this->images),
         ];

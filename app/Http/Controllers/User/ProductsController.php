@@ -13,14 +13,13 @@ use App\Http\Resources\ProductResource;
 
 class ProductsController extends Controller
 {
-    use rateCalculation ;
+    use rateCalculation;
     public function getProductsFromSection($sectionName){
         return ProductResource::collection(Products::where('section_id',$sectionName)->get());
 
     }
 
     public function testfunction(){
-
     }
 
 }

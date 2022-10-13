@@ -6,6 +6,7 @@ use App\Models\Owners;
 use App\Models\Photos;
 use App\Models\Section;
 use App\Models\Scopes\isActiveScope;
+use App\Models\Scopes\ActiveOfferScope;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Translatable\HasTranslations;
 use Illuminate\Database\Eloquent\Casts\Attribute;

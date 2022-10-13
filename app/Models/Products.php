@@ -17,6 +17,7 @@ class Products extends Model
 {
     use HasFactory , HasTranslations ;
     protected $guarded=[];
+
     public $translatable = ['name','description','intgredients','size','addons'];
 
     public function section(){
@@ -30,7 +31,7 @@ class Products extends Model
     }
 
     public function offer(){
-        return $this->hasOne(OfferProducts::class);
+        return $this->hasOne(OfferProducts::class)->where('status',1);
     }
     public function image(){
         return $this->morphOne(Photos::class, 'photo');

@@ -21,7 +21,7 @@ class ProductObserver
 
         $getSection=BeebBeebSections::find($BeebSectino_id);
 
-        if(is_null($getSection->offer)){
+        if(!($getSection->offer->status)){
             return ;
         }else{
             $Offer=$getSection->offer;
