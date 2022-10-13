@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Owners;
 use App\Models\Photos;
 use App\Models\Section;
+use App\Models\Products;
 use App\Models\Scopes\isActiveScope;
 use App\Models\Scopes\ActiveOfferScope;
 use Illuminate\Database\Eloquent\Model;
@@ -34,6 +35,12 @@ class BeebBeebSections extends Model
         return $this->morphMany(Photos::class, 'photo');
     }
 
+    public function products(){
+        return $this->hasMany(Products::class)->with('offer');
+    }
+    // public function productsOffer(){
+    //     return $this->hasMany(Products::class);
+    // }
     public function time(): Attribute
     {
         return new Attribute(

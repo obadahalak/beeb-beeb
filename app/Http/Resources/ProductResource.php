@@ -27,7 +27,7 @@ class ProductResource extends JsonResource
             'addons'=>$this->addons,
             'intgredients'=>$this->intgredients,
             'rating'=>$this->getRating(nameSections::product->value,$this->id),
-            'offer'=>$this->offer->discount ?? false,
+            'offer'=> $this->offer->discount ?? false,
             'image'=>new ImageResource($this->image),
         ];
 

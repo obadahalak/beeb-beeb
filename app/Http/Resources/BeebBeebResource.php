@@ -30,6 +30,7 @@ class BeebBeebResource extends JsonResource
             'offer'=>$this->offer && $this->offer->status ? ($this->offer->offer) : false,
             'time'=>$this->time,
             'delivery_cost'=>$this->delivery_cost,
+            'delivery_date'=>$this->delivery_date,
             'images'=>ImageResource::collection($this->images),
         ];
     }

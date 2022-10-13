@@ -21,8 +21,8 @@ class SectionsController extends Controller
     public function getSections(){
         return  SectionResource::collection(Section::get());
     }
-    public function getCategory(){
-        return  CategoryResource::collection(CategoryProducts::get());
+    public function getCategoryFromSectionId($id){
+        return  CategoryResource::collection(CategoryProducts::where('section_id',$id)->get());
     }
 
     public function beebBeebSection(){
