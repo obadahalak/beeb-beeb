@@ -39,6 +39,7 @@ class BeebBeebSectionsFactory extends Factory
             'time'=>$time,
             'delivery'=> json_encode('delivery-data'),
             'offer'=>$offer,
+            'delivery_cost'=>1000,
             'status'=>false
         ];
     }

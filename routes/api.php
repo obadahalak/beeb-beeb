@@ -11,6 +11,7 @@ Route::controller(SectionsController::class)->group(function () {
     Route::get('/sections', 'getSections');
     Route::get('/category', 'getCategory');
     Route::get('/beebBeebSection','beebBeebSection');
+    Route::get('/getBeebBeebHasOffer','getBeebBeebHasOffer');
 });
 
 Route::controller(ProductsController::class)->group(function(){

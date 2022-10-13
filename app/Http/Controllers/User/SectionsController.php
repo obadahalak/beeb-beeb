@@ -22,12 +22,15 @@ class SectionsController extends Controller
         return  SectionResource::collection(Section::get());
     }
     public function getCategory(){
-
         return  CategoryResource::collection(CategoryProducts::get());
     }
 
     public function beebBeebSection(){
-
        return  BeebBeebResource::collection(BeebBeebSections::get());
     }
+
+    public function getBeebBeebHasOffer(){
+        return  BeebBeebResource::collection(BeebBeebSections::where('offer->status',true)->get());
+    }
+
 }
