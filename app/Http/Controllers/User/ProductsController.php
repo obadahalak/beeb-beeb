@@ -6,6 +6,7 @@ use App\Models\Products;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\enum\nameSections;
+use App\Models\BeebBeebSections;
 use App\Http\Controllers\Controller;
 use App\Http\Traits\rateCalculation;
 use App\Http\Resources\ProductResource;
@@ -19,7 +20,7 @@ class ProductsController extends Controller
     }
 
     public function testfunction(){
-        
+
     }
 
 }

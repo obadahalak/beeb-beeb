@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        OfferProducts::factory(5)->create();
+       // OfferProducts::factory(5)->create();
      // Reviews::factory(10)->create();
        // Products::factory()->create();
 
@@ -33,8 +33,13 @@ class DatabaseSeeder extends Seeder
         // ]);
         // BeebBeebSections::factory(1)->create()->each(function($u){
 
-        //     $u->image()->create([
-        //         'src'=>'beeb_beeb_images/image3.png',
+        //     $u->images()->create([
+        //         'src'=>'beeb_beeb_images/image22.png',
+        //         'type' =>'image',
+        //     ]);
+        //     $u->images()->create([
+        //         'src'=>'beeb_beeb_logo/image22.png',
+        //         'type' =>'logo',
         //     ]);
         // });
 

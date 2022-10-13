@@ -16,3 +16,8 @@ Route::controller(SectionsController::class)->group(function () {
 Route::controller(ProductsController::class)->group(function(){
     Route::get('/getProductsFromSection/{id}','getProductsFromSection');
 });
+
+
+Route::controller(ProductsController::class)->group(function(){
+    Route::get('/test','testfunction');
+});

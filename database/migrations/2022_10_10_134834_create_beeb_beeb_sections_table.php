@@ -29,7 +29,7 @@ return new class extends Migration
             $table->text('description');
             $table->json('time');
             $table->json('delivery');
-            $table->boolean('is_open');
+            $table->json('offer')->nullable(); /// offer for all products  expireDate and discountOffer ///
             $table->boolean('status');
             $table->timestamps();
         });

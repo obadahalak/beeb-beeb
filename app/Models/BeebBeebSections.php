@@ -41,6 +41,14 @@ class BeebBeebSections extends Model
         );
     }
 
+    public function offer(): Attribute
+    {
+        return new Attribute(
+            get: fn ($value) => json_decode($value),
+            set: fn ($value) => json_encode($value),
+        );
+    }
+
     public static function booted(){
         static::addGlobalScope(new isActiveScope);
     }

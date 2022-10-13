@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Photos;
 use App\Models\Section;
+use App\Models\OfferProducts;
 use App\Models\BeebBeebSections;
 use App\Models\CategoryProducts;
 use App\Models\Scopes\isActiveScope;
@@ -26,6 +27,10 @@ class Products extends Model
     }
     public function category_product(){
         return $this->belongsTo(CategoryProducts::class);
+    }
+
+    public function offer(){
+        return $this->hasOne(OfferProducts::class);
     }
     public function image(){
         return $this->morphOne(Photos::class, 'photo');
