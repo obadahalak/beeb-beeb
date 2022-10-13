@@ -4,10 +4,9 @@ namespace App\Http\Resources;
 
 use App\Http\enum\nameSections;
 use App\Http\Traits\rateCalculation;
-use App\Http\Resources\ImageResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class BeebBeebResource extends JsonResource
+class ProductResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -21,15 +20,15 @@ class BeebBeebResource extends JsonResource
         return [
             'id'=>$this->id,
             'name'=>$this->name,
-            'phone'=>$this->phone,
-            'address'=>$this->address,
-            'lat'=>$this->lat,
-            'long' =>$this->long,
+            'discount_price'=>$this->dicount_price,
+            'price'=>$this->price,
             'description'=>$this->description,
-            'rating'=>$this->getRating(nameSections::beebSection->value,$this->id),
-            'offer'=>'',
-            'time'=>$this->time,
-            'images'=>ImageResource::collection($this->images),
+            'size'=>$this->size,
+            'addons'=>$this->addons,
+            'intgredients'=>$this->intgredients,
+            'rating'=>$this->getRating(nameSections::product->value,$this->id),
+            'image'=>new ImageResource($this->image),
         ];
+
     }
 }

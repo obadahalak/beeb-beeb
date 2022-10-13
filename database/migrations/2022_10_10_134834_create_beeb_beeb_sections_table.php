@@ -30,8 +30,7 @@ return new class extends Migration
             $table->json('time');
             $table->json('delivery');
             $table->boolean('is_open');
-            $table->boolean('stauts');
-
+            $table->boolean('status');
             $table->timestamps();
         });
     }

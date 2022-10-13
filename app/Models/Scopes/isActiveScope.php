@@ -17,6 +17,6 @@ class isActiveScope implements Scope
      */
     public function apply(Builder $builder, Model $model)
     {
-        $builder->where('stauts',1);
+        $builder->where('status',1);
     }
 }

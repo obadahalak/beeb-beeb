@@ -21,7 +21,7 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignIdFor(Products::class)->constrained()->cascadeOnDelete()->cascadeOnUpdate();
-            $table->foreignIdFor(Orders::class)->constrained()->cascadeOnDelete()->cascadeOnUpdate()->nullable();
+            $table->foreignIdFor(Orders::class)->nullable()->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignIdFor(BeebBeebSections::class)->constrained()->cascadeOnDelete()->cascadeOnUpdate()->nullable();
             $table->double('rate');
             $table->text('review');

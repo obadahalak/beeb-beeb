@@ -28,7 +28,6 @@ class SectionsController extends Controller
 
     public function beebBeebSection(){
 
-
        return  BeebBeebResource::collection(BeebBeebSections::get());
     }
 }

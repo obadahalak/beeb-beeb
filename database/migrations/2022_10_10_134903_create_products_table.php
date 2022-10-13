@@ -22,11 +22,11 @@ return new class extends Migration
             $table->foreignIdFor(Section::class)->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignIdFor(CategoryProducts::class)->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('name');
-            $table->string('dicount_price');
-            $table->string('price');
+            $table->double('dicount_price');
+            $table->double('price');
            // $table->string('image');
             $table->text('description');
-            $table->date('preparing_time')->nullable();
+            $table->integer('preparing_time')->nullable();
             $table->boolean('non_veg')->nullable();
             $table->json('intgredients')->nullable();
             $table->json('size');

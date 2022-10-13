@@ -7,9 +7,12 @@ namespace Database\Seeders;
 use App\Models\Owners;
 use App\Models\Drivers;
 use App\Models\Section;
+use App\Models\Products;
 use Illuminate\Database\Seeder;
 use App\Models\BeebBeebSections;
 use App\Models\CategoryProducts;
+use App\Models\OfferProducts;
+use App\Models\Reviews;
 
 class DatabaseSeeder extends Seeder
 {
@@ -20,22 +23,26 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        OfferProducts::factory(5)->create();
+     // Reviews::factory(10)->create();
+       // Products::factory()->create();
 
-        BeebBeebSections::factory(1)->create()->each(function($u){
+        // \App\Models\User::factory()->create([
+        //     'name' => 'Test User',
+        //     'email' => 'test@example.com',
+        // ]);
+        // BeebBeebSections::factory(1)->create()->each(function($u){
 
-            $u->image()->create([
-                'src'=>'beeb_beeb_images/image3.png',
-            ]);
-        });
+        //     $u->image()->create([
+        //         'src'=>'beeb_beeb_images/image3.png',
+        //     ]);
+        // });
 
     //CategoryProducts::factory(1)->create();
      //   Owners::factory(3)->create();
         //Section::factory(1)->create();
         // \App\Models\User::factory(10)->create();
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+
     }
 }
