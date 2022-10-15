@@ -3,6 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\WishList;
 use App\Models\userLocation;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
@@ -45,5 +46,17 @@ class User extends Authenticatable
 
     public function locations(){
         return $this->hasMany(userLocation::class,'user_id');
+    }
+    public function wishList(){
+        return $this->hasMany(WishList::class,'user_id')
+        ->where('model','App\\Models\\Products')
+        ->orderBy('id','DESC')
+        ->with('product');
+    }
+    public function wishListBeeb(){
+        return $this->hasMany(WishList::class,'user_id')
+        ->where('model','App\Models\BeebBeebSections')
+        ->orderBy('id','DESC')
+        ->with('beebSecton');
     }
 }

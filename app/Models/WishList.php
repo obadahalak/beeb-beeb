@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
+use App\Models\BeebBeebSections;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Translatable\HasTranslations;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class WishList extends Model
 {
-    use HasFactory , HasTranslations ;
+    use HasFactory  ;
     protected $guarded=[];
 
     public function user(){
@@ -16,6 +17,9 @@ class WishList extends Model
     }
 
     public function product(){
-        return $this->belongsTo(Products::class);
+        return $this->belongsTo(Products::class,'model_id')->orderBy('id', 'DESC');
+    }
+    public function beebSecton(){
+        return $this->belongsTo(BeebBeebSections::class,'model_id')->orderBy('id','DESC');
     }
 }

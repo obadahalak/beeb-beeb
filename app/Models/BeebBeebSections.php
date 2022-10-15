@@ -60,4 +60,13 @@ class BeebBeebSections extends Model
     public static function booted(){
         static::addGlobalScope(new isActiveScope);
     }
+
+    public static   function model(): Model
+    {
+        return new (get_class());
+    }
+    public static function getPath()
+    {
+        return get_class(self::model());
+    }
 }

@@ -15,32 +15,37 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Products extends Model
 {
-    use HasFactory , HasTranslations ;
-    protected $guarded=[];
+    use HasFactory, HasTranslations;
+    protected $guarded = [];
 
-    public $translatable = ['name','description','intgredients','size','addons'];
+    public $translatable = ['name', 'description', 'intgredients', 'size', 'addons'];
 
-    public function section(){
+    public function section()
+    {
         return $this->belongsTo(Section::class);
     }
-    public function beeb_beeb_section(){
+    public function beeb_beeb_section()
+    {
         return $this->belongsTo(BeebBeebSections::class);
     }
-    public function category_product(){
+    public function category_product()
+    {
         return $this->belongsTo(CategoryProducts::class);
     }
 
-    public function offer(){
-        return $this->hasOne(OfferProducts::class)->where('status',1);
+    public function offer()
+    {
+        return $this->hasOne(OfferProducts::class)->where('status', 1);
     }
-    public function image(){
+    public function image()
+    {
         return $this->morphOne(Photos::class, 'photo');
     }
     public function intgredients(): Attribute
     {
         return new Attribute(
             get: fn ($value) => json_decode($value),
-            set: fn ($value) =>json_encode($value),
+            set: fn ($value) => json_encode($value),
         );
     }
 
@@ -48,7 +53,7 @@ class Products extends Model
     {
         return new Attribute(
             get: fn ($value) => json_decode($value),
-            set: fn ($value) =>json_encode($value),
+            set: fn ($value) => json_encode($value),
         );
     }
 
@@ -56,12 +61,21 @@ class Products extends Model
     {
         return new Attribute(
             get: fn ($value) => json_decode($value),
-            set: fn ($value) =>json_encode($value),
+            set: fn ($value) => json_encode($value),
         );
     }
 
-
-    public static function booted(){
+    public static function booted()
+    {
         static::addGlobalScope(new isActiveScope);
+    }
+
+    public static   function model(): Model
+    {
+        return new (get_class());
+    }
+    public static function getPath()
+    {
+        return get_class(self::model());
     }
 }
