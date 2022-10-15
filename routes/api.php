@@ -14,7 +14,7 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 Route::controller(SectionsController::class)->group(function () {
     Route::get('/sections', 'getSections');
     Route::get('/category-FromSectinId/{id}', 'getCategoryFromSectionId');
-    Route::get('/beebSection', 'beebBeebSection');
+    Route::get('/beebSection/{id}', 'beebBeebSection');
     Route::get('/BeebHasOffer', 'getBeebBeebHasOffer');
 });
 

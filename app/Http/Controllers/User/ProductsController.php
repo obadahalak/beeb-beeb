@@ -35,8 +35,7 @@ class ProductsController extends Controller
 
     public function getProductsFromCategoryId($categoryId)
     {
-        return ProductResource::collection(Products::where('category_products_id', $categoryId)
-            ->get());
+        return ProductResource::collection(Products::where('category_products_id', $categoryId)->get());
     }
 
     public function getProductFromId($productId)

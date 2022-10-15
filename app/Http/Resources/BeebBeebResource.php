@@ -32,6 +32,8 @@ class BeebBeebResource extends JsonResource
             'delivery_cost'=>$this->delivery_cost,
             'delivery_date'=>$this->delivery_date,
             'images'=>ImageResource::collection($this->images),
+            'isWishlist'=> auth('sanctum')->check() ? auth('sanctum')->user()->is_wishListBeeb($this->id)  : 'notAuth',
+
         ];
     }
 }

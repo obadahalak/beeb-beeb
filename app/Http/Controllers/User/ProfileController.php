@@ -20,18 +20,16 @@ class ProfileController extends Controller
     }
     public function getWishList()
     {
-        //$wishList = Cache::rememberForever('wishList', function () {
 
             $product = wishListResource::collection(auth('sanctum')->user()->wishList);
             $beebSection = wishListBeebResource::collection(auth('sanctum')->user()->wishListBeeb);
             return response()->json(['products' => $product, 'beebSection' => $beebSection]);
-       // });
-        //return $wishList;
+
     }
 
-    public function removeProductFromWithList()
+    public function removeWithList()
     {
-        //code..
+        //code.. dont code here ^_^
     }
 
     public function addToCart()
