@@ -17,8 +17,8 @@ return new class extends Migration
         Schema::create('user_locations', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete()->cascadeOnUpdate();
-            $table->point('lat');
-            $table->point('long');
+            $table->string('lat');
+            $table->string('long');
             $table->text('location');
             $table->timestamps();
         });

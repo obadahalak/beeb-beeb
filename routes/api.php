@@ -33,4 +33,5 @@ Route::controller(ProductsController::class)->group(function () {
 Route::controller(AuthUserController::class)->group(function () {
 
     Route::post('/auth-user','auth');
+    Route::post('/createLocations','createLocations')->middleware('auth:sanctum');
 });
