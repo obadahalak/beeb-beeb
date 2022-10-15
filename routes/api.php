@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\User\AuthUserController;
 use App\Http\Controllers\User\ProductsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -25,4 +26,11 @@ Route::controller(ProductsController::class)->group(function () {
 
 Route::controller(ProductsController::class)->group(function () {
     Route::get('/test', 'testfunction');
+});
+
+////////////// Auth User ////////////////////
+
+Route::controller(AuthUserController::class)->group(function () {
+
+    Route::post('/auth-user','auth');
 });
