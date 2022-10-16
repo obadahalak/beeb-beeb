@@ -44,27 +44,43 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function locations(){
-        return $this->hasMany(userLocation::class,'user_id');
+    public function locations()
+    {
+        return $this->hasMany(userLocation::class, 'user_id');
     }
 
 
-    public function is_wishList($productId){
-        return $this->wishList->contains('model_id',$productId);
+    // public function is_wishList($productId)
+    // {
+    //     return $this->wishList->contains('model_id', $productId);
+    // }
+    // public function is_wishListBeeb($productId)
+    // {
+    //     return $this->wishListBeeb->contains('model_id', $productId);
+    // }
+    // public function wishList()
+    // {
+    //     return $this->hasMany(WishList::class, 'user_id')
+    //         ->where('model', 'App\\Models\\Products')
+    //         ->orderBy('id', 'DESC')
+    //         ->with('product');
+    // }
+    // public function wishListBeeb()
+    // {
+    //     return $this->hasMany(WishList::class, 'user_id')
+    //         ->where('model', 'App\Models\BeebBeebSections')
+    //         ->orderBy('id', 'DESC')
+    //         ->with('beebSecton');
+    // }
+
+
+
+    public function likeProducts()
+    {
+        return $this->morphedByMany('App\Models\Products', 'like');
     }
-    public function is_wishListBeeb($productId){
-        return $this->wishListBeeb->contains('model_id',$productId);
-    }
-    public function wishList(){
-        return $this->hasMany(WishList::class,'user_id')
-        ->where('model','App\\Models\\Products')
-        ->orderBy('id','DESC')
-        ->with('product');
-    }
-    public function wishListBeeb(){
-        return $this->hasMany(WishList::class,'user_id')
-        ->where('model','App\Models\BeebBeebSections')
-        ->orderBy('id','DESC')
-        ->with('beebSecton');
+    public function likebeebSection()
+    {
+        return $this->morphedByMany('App\Models\BeebBeebSections', 'like');
     }
 }

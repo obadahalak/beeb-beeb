@@ -5,10 +5,13 @@ namespace App\Http\Controllers\User;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\BeebBeebResource;
+use App\Http\Resources\ProductResource;
 use App\Http\Traits\wishListService;
 use Illuminate\Support\Facades\Cache;
 use App\Http\Resources\wishListResource;
 use App\Http\Resources\wishListBeebResource;
+use App\Models\Products;
 
 class ProfileController extends Controller
 {
@@ -21,10 +24,11 @@ class ProfileController extends Controller
     public function getWishList()
     {
 
-            $product = wishListResource::collection(auth('sanctum')->user()->wishList);
-            $beebSection = wishListBeebResource::collection(auth('sanctum')->user()->wishListBeeb);
-            return response()->json(['products' => $product, 'beebSection' => $beebSection]);
+        $product = ProductResource::collection(auth('sanctum')->user()->likeProducts);
 
+        $beebSection = BeebBeebResource::collection(auth('sanctum')->user()->likebeebSection);
+
+        return response()->json(['products' => $product, 'beebSection' => $beebSection]);
     }
 
     public function removeWithList()

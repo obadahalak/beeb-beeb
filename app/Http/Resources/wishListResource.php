@@ -21,17 +21,17 @@ class wishListResource extends JsonResource
         return[
 
 
-            'id' => $this->product->id,
-            'name' => $this->product->name,
-            'discount_price' => $this->product->dicount_price,
-            'price' => $this->product->price,
-            'description' => $this->product->description,
-            'size' => $this->product->size,
-            'addons' => $this->product->addons,
-            'intgredients' => $this->product->intgredients,
-            'rating' => $this->getRating(nameSections::product->value, $this->product->id),
-            'offer' => $this->product->offer->discount ?? false,
-            'image' => new ImageResource($this->product->image),
+            'id' => $this->id,
+            'name' => $this->name,
+            'discount_price' => $this->dicount_price,
+            'price' => $this->price,
+            'description' => $this->description,
+            'size' => $this->size,
+            'addons' => $this->addons,
+            'intgredients' => $this->intgredients,
+            // 'rating' => $this->getRating(nameSec/tions::value, $this->id),
+            'offer' => $this->offer->discount ?? false,
+            'image' => new ImageResource($this->image),
         ];
 
 

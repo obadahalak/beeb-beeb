@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\like;
 use App\Models\Photos;
 use App\Models\Section;
 use App\Models\OfferProducts;
@@ -41,6 +42,19 @@ class Products extends Model
     {
         return $this->morphOne(Photos::class, 'photo');
     }
+
+    public function likes()
+    {
+        return $this->morphMany(like::class, 'like');
+    }
+    public function islike()
+    {
+      return    $this->morphOne(like::class, 'like')->select('is_like');
+    }
+
+
+
+
     public function intgredients(): Attribute
     {
         return new Attribute(

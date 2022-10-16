@@ -35,6 +35,11 @@ class BeebBeebSections extends Model
         return $this->morphMany(Photos::class, 'photo');
     }
 
+    public function likes()
+    {
+        return $this->morphMany(like::class, 'like');
+    }
+
     public function products(){
         return $this->hasMany(Products::class)->with('offer');
     }

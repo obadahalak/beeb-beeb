@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Database\Eloquent\Model;
 use App\Http\Controllers\User\AuthUserController;
+use App\Http\Controllers\User\LikeController;
 use App\Http\Controllers\User\ProductsController;
 use App\Http\Controllers\User\ProfileController;
 use App\Http\Controllers\User\SectionsController;
@@ -42,11 +43,13 @@ Route::controller(AuthUserController::class)->group(function () {
 
 Route::controller(ProfileController::class)->group(function(){
     Route::post('/add-wishlist/{model}/{model_id}','addToWishList');
-    Route::get('getWishList','getWishList');
+    Route::get('/getWishList','getWishList');
 });
 
-// Route::get('/test',function(Request $request){
-//     return $request->model::getclass();
 
+Route::controller(LikeController::class)->group(function () {
 
-// });
+    Route::post('/createLike','createLike');
+
+    Route::get('userLikes','userLikes');
+});

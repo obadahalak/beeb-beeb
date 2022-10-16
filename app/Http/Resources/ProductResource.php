@@ -14,23 +14,45 @@ class ProductResource extends JsonResource
      * @param  \Illuminate\Http\Request  $request
      * @return array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
      */
-    use rateCalculation ;
+    use rateCalculation;
     public function toArray($request)
     {
-        return [
-            'id'=>$this->id,
-            'name'=>$this->name,
-            'discount_price'=>$this->dicount_price,
-            'price'=>$this->price,
-            'description'=>$this->description,
-            'size'=>$this->size,
-            'addons'=>$this->addons,
-            'intgredients'=>$this->intgredients,
-            'rating'=>$this->getRating(nameSections::product->value,$this->id),
-            'offer'=> $this->offer->discount ?? false,
-            'image'=>new ImageResource($this->image),
-            'isWishlist'=> auth('sanctum')->check() ? auth('sanctum')->user()->is_wishList($this->id)  : 'notAuth',
-        ];
 
+
+        if (auth('sanctum')->check()) {
+            return [
+                'id' => $this->id,
+                'name' => $this->name,
+                'discount_price' => $this->dicount_price,
+                'price' => $this->price,
+                'description' => $this->description,
+                'size' => $this->size,
+                'addons' => $this->addons,
+                'intgredients' => $this->intgredients,
+                'rating' => $this->getRating(nameSections::product->value, $this->id),
+                'offer' => $this->offer->discount ?? false,
+                'image' => new ImageResource($this->image),
+                // 'isWishlist'=> auth('sanctum')->check() ? auth('sanctum')->user()->is_wishList($this->id)  : 'notAuth',
+                'like' => $this->islike ? true : false,
+            ];
+        } else {
+
+
+            return [
+                'id' => $this->id,
+                'name' => $this->name,
+                'discount_price' => $this->dicount_price,
+                'price' => $this->price,
+                'description' => $this->description,
+                'size' => $this->size,
+                'addons' => $this->addons,
+                'intgredients' => $this->intgredients,
+                'rating' => $this->getRating(nameSections::product->value, $this->id),
+                'offer' => $this->offer->discount ?? false,
+                'image' => new ImageResource($this->image),
+                // 'isWishlist'=> auth('sanctum')->check() ? auth('sanctum')->user()->is_wishList($this->id)  : 'notAuth',
+                'like' => 'not auth',
+            ];
+        }
     }
 }
