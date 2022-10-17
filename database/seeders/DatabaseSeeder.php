@@ -10,6 +10,7 @@ use App\Models\Section;
 use App\Models\Products;
 use Illuminate\Database\Seeder;
 use App\Models\BeebBeebSections;
+use App\Models\Carts;
 use App\Models\CategoryProducts;
 use App\Models\OfferProducts;
 use App\Models\Reviews;
@@ -23,6 +24,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+      Carts::factory(1)->create();
        // OfferProducts::factory(5)->create();
      // Reviews::factory(10)->create();
        // Products::factory()->create();

@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Models\like;
+use App\Models\Carts;
 use App\Models\WishList;
 use App\Contracts\Likeable;
 use App\Models\userLocation;
@@ -85,5 +86,10 @@ class User extends Authenticatable
     public function likebeebSection()
     {
         return $this->morphedByMany('App\Models\BeebBeebSections', 'like');
+    }
+
+
+    public function carts(){
+        return $this->hasMany(Carts::class)->where('in_cart',false);
     }
 }

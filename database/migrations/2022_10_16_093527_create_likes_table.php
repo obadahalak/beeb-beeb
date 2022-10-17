@@ -17,7 +17,7 @@ return new class extends Migration
         Schema::create('likes', function (Blueprint $table) {
             $table->id();
             $table->morphs('like');
-            $table->boolean('is_like');
+            $table->boolean('is_like')->default(1);
             $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });

@@ -44,4 +44,5 @@ Route::controller(AuthUserController::class)->group(function () {
 Route::controller(ProfileController::class)->group(function(){
     Route::post('/like','likeUser');
     Route::get('/getLikes','getLikes')->middleware('auth:sanctum');
+    Route::post('/addToCart','addToCart')->middleware('auth:sanctum');
 });
