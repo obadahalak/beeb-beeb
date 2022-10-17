@@ -10,7 +10,7 @@
 @endif
 
 
-<form action="{{ route('storeRest') }}" method="POST">
+<form action="{{ route('updateRest') }}" method="POST">
 
     @csrf
 

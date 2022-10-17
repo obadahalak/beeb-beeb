@@ -13,8 +13,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class BeebBeebSections extends Model
 {
-    use HasFactory;
+  //  use HasFactory;
     use HasFactory, HasTranslations;
+
     protected $guarded = [];
     public $translatable = ['name', 'description', 'address'];
 
