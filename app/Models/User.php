@@ -3,7 +3,9 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\like;
 use App\Models\WishList;
+use App\Contracts\Likeable;
 use App\Models\userLocation;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
@@ -49,32 +51,33 @@ class User extends Authenticatable
         return $this->hasMany(userLocation::class, 'user_id');
     }
 
+    public function hasLiked(Likeable $likeable){
+        if(!$likeable->exists){
+            return false;
+        }else{
+                return $likeable->likes()->whereHas('user',fn($q)=>$q->whereId($this->id))
+                ->exists();
+        }
+    }
 
-    // public function is_wishList($productId)
-    // {
-    //     return $this->wishList->contains('model_id', $productId);
-    // }
-    // public function is_wishListBeeb($productId)
-    // {
-    //     return $this->wishListBeeb->contains('model_id', $productId);
-    // }
-    // public function wishList()
-    // {
-    //     return $this->hasMany(WishList::class, 'user_id')
-    //         ->where('model', 'App\\Models\\Products')
-    //         ->orderBy('id', 'DESC')
-    //         ->with('product');
-    // }
-    // public function wishListBeeb()
-    // {
-    //     return $this->hasMany(WishList::class, 'user_id')
-    //         ->where('model', 'App\Models\BeebBeebSections')
-    //         ->orderBy('id', 'DESC')
-    //         ->with('beebSecton');
-    // }
+    public function like(Likeable  $likeable)
+    {
+        if ($this->hasLiked($likeable)) {
+            return $this;
+        }
+        (new like())
+            ->user()->associate($this)
+            ->like()->associate($likeable)
+            ->save();
+
+        return $this;
+    }
 
 
-
+    public function likes()
+    {
+        return $this->hasMany(like::class);
+    }
     public function likeProducts()
     {
         return $this->morphedByMany('App\Models\Products', 'like');

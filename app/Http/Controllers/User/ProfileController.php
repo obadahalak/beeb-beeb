@@ -2,26 +2,34 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Models\like;
 use App\Models\User;
+use App\Models\Products;
 use Illuminate\Http\Request;
+use App\Http\Requests\LikeRequest;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\BeebBeebResource;
-use App\Http\Resources\ProductResource;
 use App\Http\Traits\wishListService;
 use Illuminate\Support\Facades\Cache;
+use App\Http\Resources\ProductResource;
+use App\Http\Resources\BeebBeebResource;
 use App\Http\Resources\wishListResource;
 use App\Http\Resources\wishListBeebResource;
-use App\Models\Products;
 
 class ProfileController extends Controller
 {
     use wishListService;
-    public function addToWishList($model, $model_id)
+
+    ///Refactor
+    public function likeUser(LikeRequest $request)
     {
 
-        return $this->WishListUser($model, $model_id);
+
+        
+      return  auth('sanctum')->user()->like($request->likeable());
     }
-    public function getWishList()
+
+    ///refactoor to likes 
+    public function getLikes()
     {
 
         $product = ProductResource::collection(auth('sanctum')->user()->likeProducts);

@@ -42,16 +42,6 @@ Route::controller(AuthUserController::class)->group(function () {
 });
 
 Route::controller(ProfileController::class)->group(function(){
-    Route::post('/add-wishlist/{model}/{model_id}','addToWishList');
-    Route::get('/getWishList','getWishList');
+    Route::post('/like','likeUser');
+    Route::get('/getLikes','getLikes')->middleware('auth:sanctum');
 });
-
-
-Route::controller(LikeController::class)->group(function () {
-
-    Route::post('/createLike','createLike');
-
-    Route::get('userLikes','userLikes');
-});
-
-///hi

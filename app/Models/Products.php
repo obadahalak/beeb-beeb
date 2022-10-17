@@ -5,7 +5,9 @@ namespace App\Models;
 use App\Models\like;
 use App\Models\Photos;
 use App\Models\Section;
+use App\Contracts\Likeable;
 use App\Models\OfferProducts;
+use App\Models\Concerns\Likes;
 use App\Models\BeebBeebSections;
 use App\Models\CategoryProducts;
 use App\Models\Scopes\isActiveScope;
@@ -14,9 +16,10 @@ use Spatie\Translatable\HasTranslations;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Products extends Model
+class Products extends Model  implements Likeable
 {
-    use HasFactory, HasTranslations;
+    use HasFactory, HasTranslations , Likes;
+
     protected $guarded = [];
 
     public $translatable = ['name', 'description', 'intgredients', 'size', 'addons'];
@@ -43,10 +46,7 @@ class Products extends Model
         return $this->morphOne(Photos::class, 'photo');
     }
 
-    public function likes()
-    {
-        return $this->morphMany(like::class, 'like');
-    }
+   
     public function islike()
     {
       return    $this->morphOne(like::class, 'like')->select('is_like');
