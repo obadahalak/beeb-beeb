@@ -2,6 +2,8 @@
 
 namespace App\Http\Resources;
 
+use App\Http\enum\nameSections;
+use App\Http\Traits\rateCalculation;
 use App\Http\Resources\ImageResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -13,6 +15,7 @@ class BeebBeebResource extends JsonResource
      * @param  \Illuminate\Http\Request  $request
      * @return array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
      */
+    use rateCalculation ;
     public function toArray($request)
     {
         return [
@@ -23,9 +26,14 @@ class BeebBeebResource extends JsonResource
             'lat'=>$this->lat,
             'long' =>$this->long,
             'description'=>$this->description,
+            'rating'=>$this->getRating(nameSections::beebSection->value,$this->id),
+            'offer'=>$this->offer && $this->offer->status ? ($this->offer->offer) : false,
             'time'=>$this->time,
-            // 'logo'=>$this->image->src,
+            'delivery_cost'=>$this->delivery_cost,
+            'delivery_date'=>$this->delivery_date,
             'images'=>ImageResource::collection($this->images),
+            'isWishlist'=> auth('sanctum')->check() ? auth('sanctum')->user()->is_wishListBeeb($this->id)  : 'notAuth',
+
         ];
     }
 }

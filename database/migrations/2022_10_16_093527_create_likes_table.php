@@ -1,7 +1,6 @@
 <?php
 
 use App\Models\User;
-use App\Models\Products;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -15,11 +14,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('wish_lists', function (Blueprint $table) {
+        Schema::create('likes', function (Blueprint $table) {
             $table->id();
-            $table->string('model');
-            $table->foreignId('model_id');
-            $table->string('type');
+            $table->morphs('like');
+            $table->boolean('is_like');
             $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
@@ -32,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('wish_lists');
+        Schema::dropIfExists('likes');
     }
 };

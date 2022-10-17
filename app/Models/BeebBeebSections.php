@@ -5,7 +5,9 @@ namespace App\Models;
 use App\Models\Owners;
 use App\Models\Photos;
 use App\Models\Section;
+use App\Models\Products;
 use App\Models\Scopes\isActiveScope;
+use App\Models\Scopes\ActiveOfferScope;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Translatable\HasTranslations;
 use Illuminate\Database\Eloquent\Casts\Attribute;
@@ -34,7 +36,26 @@ class BeebBeebSections extends Model
         return $this->morphMany(Photos::class, 'photo');
     }
 
+    public function likes()
+    {
+        return $this->morphMany(like::class, 'like');
+    }
+
+    public function products(){
+        return $this->hasMany(Products::class)->with('offer');
+    }
+    // public function productsOffer(){
+    //     return $this->hasMany(Products::class);
+    // }
     public function time(): Attribute
+    {
+        return new Attribute(
+            get: fn ($value) => json_decode($value),
+            set: fn ($value) => json_encode($value),
+        );
+    }
+
+    public function offer(): Attribute
     {
         return new Attribute(
             get: fn ($value) => json_decode($value),
@@ -44,5 +65,14 @@ class BeebBeebSections extends Model
 
     public static function booted(){
         static::addGlobalScope(new isActiveScope);
+    }
+
+    public static   function model(): Model
+    {
+        return new (get_class());
+    }
+    public static function getPath()
+    {
+        return get_class(self::model());
     }
 }

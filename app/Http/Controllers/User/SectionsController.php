@@ -21,14 +21,16 @@ class SectionsController extends Controller
     public function getSections(){
         return  SectionResource::collection(Section::get());
     }
-    public function getCategory(){
-
-        return  CategoryResource::collection(CategoryProducts::get());
+    public function getCategoryFromSectionId($id){
+        return  CategoryResource::collection(CategoryProducts::where('section_id',$id)->get());
     }
 
-    public function beebBeebSection(){
-
-
-       return  BeebBeebResource::collection(BeebBeebSections::get());
+    public function beebBeebSection($id){
+       return  BeebBeebResource::collection(BeebBeebSections::where('section_id',$id)->get());
     }
+
+    public function getBeebBeebHasOffer(){
+        return  BeebBeebResource::collection(BeebBeebSections::where('offer->status',true)->get());
+    }
+
 }

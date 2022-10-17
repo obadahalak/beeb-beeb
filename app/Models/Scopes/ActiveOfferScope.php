@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Scope;
 
-class isActiveScope implements Scope
+class ActiveOfferScope implements Scope
 {
     /**
      * Apply the scope to a given Eloquent query builder.
@@ -17,6 +17,6 @@ class isActiveScope implements Scope
      */
     public function apply(Builder $builder, Model $model)
     {
-        $builder->where('status',1);
+        $builder->where('offer->status',true);
     }
 }

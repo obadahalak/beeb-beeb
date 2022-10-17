@@ -28,10 +28,9 @@ return new class extends Migration
             //$table->string('photos');
             $table->text('description');
             $table->json('time');
-            $table->json('delivery');
-            $table->boolean('is_open');
-            $table->boolean('stauts');
-
+            $table->double('delivery_cost');
+            $table->json('offer')->nullable(); /// offer for all products  expireDate and discountOffer ///
+            $table->boolean('status');
             $table->timestamps();
         });
     }
