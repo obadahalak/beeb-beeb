@@ -23,11 +23,15 @@ class CartRequest extends FormRequest
      */
     public function rules()
     {
+
         return [
             'products_id'=>'bail|required|exists:products,id',
             'quantity'=>'bail|required|integer|min:1',
+            'addons'=>'array',
+            'addons.add_id'=>'required|exists:attributes,id',
+            'addons.another'=>'string'
         ];
     }
 
-   
+
 }

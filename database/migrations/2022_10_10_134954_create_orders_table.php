@@ -3,6 +3,7 @@
 use App\Models\User;
 use App\Models\Products;
 use App\Models\BeebBeebSections;
+use App\Models\Carts;
 use App\Models\Drivers;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
@@ -20,12 +21,8 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(BeebBeebSections::class)->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignIdFor(User::class,'cart_user')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignIdFor(Drivers::class)->constrained()->cascadeOnDelete()->cascadeOnUpdate();
-            $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete()->cascadeOnUpdate();
-            $table->foreignIdFor(Products::class)->constrained()->cascadeOnDelete()->cascadeOnUpdate();
-            $table->json('size_addons');
-            $table->integer('quantity');
             $table->double('ammount_after_discount');
             $table->double('ammount_befor_discount');
             $table->double('total_after_offer');
