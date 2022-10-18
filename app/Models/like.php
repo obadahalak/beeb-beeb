@@ -10,15 +10,22 @@ class like extends Model
 {
     use HasFactory;
 
-    protected $guarded=[];
+    protected $guarded = [];
 
-    protected $table='likes';
+    protected $table = 'likes';
 
-    public  function like(){
-        return $this->morphTo()->where('user_id',auth('sanctum')->user()->id);
+    // public  function like(){
+    //     return $this->morphTo()->where('user_id',auth('sanctum')->user()->id);
+    // }
+
+
+    public  function like()
+    {
+        return $this->morphTo();
     }
 
-    // public function user(){
-    //     return $this->belongsTo(User::class);
-    // }
+    public function user()
+    {
+        return $this->belongsTo(User::class)->withDefault();
+    }
 }

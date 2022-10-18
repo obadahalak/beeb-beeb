@@ -36,22 +36,12 @@ Route::controller(ProductsController::class)->group(function () {
 
 Route::controller(AuthUserController::class)->group(function () {
 
-    Route::post('/auth-user','auth');
-    Route::post('/createLocations','createLocations')->middleware('auth:sanctum');
-
+    Route::post('/auth-user', 'auth');
+    Route::post('/createLocations', 'createLocations')->middleware('auth:sanctum');
 });
 
-Route::controller(ProfileController::class)->group(function(){
-    Route::post('/add-wishlist/{model}/{model_id}','addToWishList');
-    Route::get('/getWishList','getWishList');
+Route::controller(ProfileController::class)->middleware('auth:sanctum')->group(function () {
+    Route::post('/like', 'likeUser');
+    Route::get('/getLikes', 'getLikes');
+    Route::post('/addToCart', 'addToCart');
 });
-
-
-Route::controller(LikeController::class)->group(function () {
-
-    Route::post('/createLike','createLike');
-
-    Route::get('userLikes','userLikes');
-});
-
-///hi

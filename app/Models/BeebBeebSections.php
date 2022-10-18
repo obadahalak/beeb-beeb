@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use App\Models\like;
 use App\Models\Owners;
 use App\Models\Photos;
 use App\Models\Section;
 use App\Models\Products;
+use App\Contracts\Likeable;
+use App\Models\Concerns\Likes;
 use App\Models\Scopes\isActiveScope;
 use App\Models\Scopes\ActiveOfferScope;
 use Illuminate\Database\Eloquent\Model;
@@ -13,9 +16,12 @@ use Spatie\Translatable\HasTranslations;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class BeebBeebSections extends Model
+class BeebBeebSections extends Model implements Likeable
 {
   //  use HasFactory;
+
+    use Likes;
+
     use HasFactory, HasTranslations;
 
     protected $guarded = [];
@@ -36,17 +42,16 @@ class BeebBeebSections extends Model
         return $this->morphMany(Photos::class, 'photo');
     }
 
-    public function likes()
-    {
-        return $this->morphMany(like::class, 'like');
-    }
-
     public function products(){
         return $this->hasMany(Products::class)->with('offer');
     }
-    // public function productsOffer(){
-    //     return $this->hasMany(Products::class);
-    // }
+
+    public function islike()
+    {
+      return    $this->morphOne(like::class, 'like')->select('is_like');
+    }
+
+
     public function time(): Attribute
     {
         return new Attribute(

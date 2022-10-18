@@ -69,6 +69,25 @@
       </div>
 
       <div class="mb-3 col-5">
+        <label for="disabledTextInput" class="form-label">Delivary Cost</label>
+        <input name="delivery_cost" type="text" id="disabledTextInput" class="form-control" placeholder="Delivery Cost">
+      </div>
+
+      <div class="mb-3 col-5">
+        <label for="disabledTextInput" class="form-label">Delivery time</label>
+
+        <select name="delivery_date" class="form-label">
+            <option value="10"> 10 min </option>
+            <option value="20"> 20 min </option>
+            <option value="30"> 30 min </option>
+            <option value="40"> 40 min </option>
+            <option value="50"> 50 min </option>
+            <option value="60"> 60 min </option>
+
+        </select>
+      </div>
+
+      <div class="mb-3 col-5">
         <label for="disabledTextInput" class="form-label">open time</label>
         <input name="time[]" type="time" id="disabledTextInput" class="form-control" placeholder="Phone number">
       </div>
@@ -78,23 +97,42 @@
         <input name="time[]" type="time" id="disabledTextInput" class="form-control" placeholder="Phone number">
       </div>
 
-      <div class="mb-3 col-5">
+      {{--  <div class="mb-3 col-5">
         <label for="disabledTextInput" class="form-label">is open</label>
 
         <select name="is_open" class="form-label">
             <option value="0"> 0 </option>
             <option value="1"> 1 </option>
         </select>
-      </div>
+      </div>  --}}
 
       <div class="mb-3 col-5">
         <label for="disabledTextInput" class="form-label">is Active</label>
         {{-- <input name="status" type="text" id="disabledTextInput" class="form-control"> --}}
-        <select name="stauts" class="form-label">
+        <select name="status" class="form-label">
             <option value="0"> 0 </option>
             <option value="1"> 1 </option>
         </select>
       </div>
+
+      <h2> Add an offer </h2>
+
+      <div class="mb-3 col-5">
+        <label for="disabledTextInput" class="form-label">Expire date</label>
+        <input name="offer[]" type="text" id="disabledTextInput" class="form-control" placeholder="expire date">
+      </div>
+
+      <div class="mb-3 col-5">
+        <label for="disabledTextInput" class="form-label">code</label>
+        <input name="offer[]" type="text" id="disabledTextInput" class="form-control" placeholder="code">
+      </div>
+
+      <div class="mb-3 col-5">
+        <label for="disabledTextInput" class="form-label">discount</label>
+        <input name="offer[]" type="text" id="disabledTextInput" class="form-control" placeholder="discount">
+      </div>
+
+
 
 
 

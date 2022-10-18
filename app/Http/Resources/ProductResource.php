@@ -32,7 +32,6 @@ class ProductResource extends JsonResource
                 'rating' => $this->getRating(nameSections::product->value, $this->id),
                 'offer' => $this->offer->discount ?? false,
                 'image' => new ImageResource($this->image),
-                // 'isWishlist'=> auth('sanctum')->check() ? auth('sanctum')->user()->is_wishList($this->id)  : 'notAuth',
                 'like' => $this->islike ? true : false,
             ];
         } else {
@@ -50,7 +49,6 @@ class ProductResource extends JsonResource
                 'rating' => $this->getRating(nameSections::product->value, $this->id),
                 'offer' => $this->offer->discount ?? false,
                 'image' => new ImageResource($this->image),
-                // 'isWishlist'=> auth('sanctum')->check() ? auth('sanctum')->user()->is_wishList($this->id)  : 'notAuth',
                 'like' => 'not auth',
             ];
         }

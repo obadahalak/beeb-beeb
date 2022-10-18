@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Section;
 use Illuminate\Support\Facades\Facade;
 
 return [
@@ -212,6 +213,7 @@ return [
         // 'ExampleClass' => App\Example\ExampleClass::class,
         'product'=>App\Models\Products::class,
         'beebSection'=>App\Models\BeebBeebSections::class,
-    ])->toArray(),
+
+        ])->toArray(),
 
 ];

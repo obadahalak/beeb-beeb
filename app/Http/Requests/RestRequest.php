@@ -32,10 +32,18 @@ class RestRequest extends FormRequest
             'lat'           => ['required' , 'string'],
             'long'          => ['required' , 'string'],
             'description'   => ['required' , 'string'],
-            'time'          => ['required' ],
+            'delivery_cost'   => ['required'],
+            'delivery_date'   => ['required' ],
+            // 'expire_date'   => ['required' ],
+            // 'code'   => ['required' ],
+            // 'discount'   => ['required' ],
+           // 'offer'     => 'required',
+
+
+           // 'time'          => [ 'array' , 'required' ],
           //  'delivary'      => ['required'],
-            'is_open'       => ['required' , 'boolean'],
-            'stauts'        => ['required' , 'boolean'],
+          //  'is_open'       => ['required' , 'boolean'],
+            'status'        => ['required' , 'boolean'],
         ];
     }
 }

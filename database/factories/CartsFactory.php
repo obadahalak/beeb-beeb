@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
+use App\Models\Products;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +19,10 @@ class CartsFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'products_id'=>Products::all()->random()->id,
+            'user_id'=>User::find(1)->id,
+            'quantity'=>random_int(1,5),
+            
         ];
     }
 }

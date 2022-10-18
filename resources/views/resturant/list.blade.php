@@ -29,7 +29,7 @@
                               <td>{{ $rest->address }}</td>
                               <td>{{ $rest->description }}</td>
                               <td>{{ $rest->status }}</td>
-                              <td><a href="{{ route('editRest') }}" > Edit </a></td>
+                              <td><a href="{{ route('editRest' , $rest->id) }}" > Edit </a></td>
                             </tr>
                             @endforeach
 

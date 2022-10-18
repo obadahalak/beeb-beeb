@@ -19,7 +19,7 @@ class restController extends Controller
     public function index()
     {
         $rests = BeebBeebSections::all();
-        return $rests;
+
         return view('resturant.list' , compact('rests'));
     }
 
@@ -45,7 +45,23 @@ class restController extends Controller
      */
     public function store(RestRequest $request)
     {
-        $rests = BeebBeebSections::create($request->validated());
+       // return $request->all();
+        $time=[
+            'open_time'=>$request->time[0],
+            'close_time'=>$request->time[1],
+        ];
+
+        $offer=[
+            'expire_date'=>$request->offer[0],
+            'code'=>$request->offer[1],
+            'discount'=>$request->offer[2],
+        ];
+
+     $rests = BeebBeebSections::create($request->validated()+[
+       'time' => $time,
+       'offer'  => $offer
+     ]);
+    // return $rests;
 
         return redirect()->back()->with('message' , 'Added');
     }
