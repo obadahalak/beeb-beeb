@@ -17,6 +17,8 @@ Route::controller(SectionsController::class)->group(function () {
     Route::get('/category-FromSectinId/{id}', 'getCategoryFromSectionId');
     Route::get('/beebSection/{id}', 'beebBeebSection');
     Route::get('/BeebHasOffer', 'getBeebBeebHasOffer');
+    Route::get('/bannerImage','bannerImage');
+    Route::post('/contactUs','contactUs');
 });
 
 Route::controller(ProductsController::class)->group(function () {

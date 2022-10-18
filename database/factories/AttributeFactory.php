@@ -17,11 +17,11 @@ class AttributeFactory extends Factory
      */
     public function definition()
     {
-        $colors=['large','small'];
+        $colors=['red','green','blue','yellow'];
         return [
             'products_id'=>Products::find(11)->id,
             'key'=>'size',
-            'value'=>$colors[random_int(0,1)],
+            'value'=>$colors[random_int(0,3)],
             'price'=>100,
         ];
     }

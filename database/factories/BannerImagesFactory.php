@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Products;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,8 @@ class BannerImagesFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'products_id'=>Products::all()->random()->id,
+            'image'=>'banner_images/'.time().'image.png',
         ];
     }
 }

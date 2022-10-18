@@ -4,17 +4,18 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
-use App\Models\Attribute;
+use App\Models\Carts;
 use App\Models\Owners;
 use App\Models\Drivers;
+use App\Models\Reviews;
 use App\Models\Section;
 use App\Models\Products;
+use App\Models\Attribute;
+use App\Models\BannerImages;
+use App\Models\OfferProducts;
 use Illuminate\Database\Seeder;
 use App\Models\BeebBeebSections;
-use App\Models\Carts;
 use App\Models\CategoryProducts;
-use App\Models\OfferProducts;
-use App\Models\Reviews;
 
 class DatabaseSeeder extends Seeder
 {
@@ -25,6 +26,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        BannerImages::factory(10)->create();
        // Attribute::factory(3)->create();
       //Carts::factory(1)->create();
        // OfferProducts::factory(5)->create();

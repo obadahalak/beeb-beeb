@@ -21,7 +21,7 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(User::class,'cart_user')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->json('products');
             $table->foreignIdFor(Drivers::class)->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->double('ammount_after_discount');
             $table->double('ammount_befor_discount');

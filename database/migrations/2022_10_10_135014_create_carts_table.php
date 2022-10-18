@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\cartUser;
 use App\Models\Products;
 use App\Models\User;
 use Illuminate\Support\Facades\Schema;
@@ -18,8 +19,10 @@ return new class extends Migration
         Schema::create('carts', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Products::class)->constrained()->cascadeOnDelete()->cascadeOnUpdate();
-            $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignIdFor(cartUser::class)->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->integer('quantity')->default(1);
+            $table->boolean('in_cart')->default(0);
+            $table->json('addons')->nullable();
             $table->timestamps();
         });
     }

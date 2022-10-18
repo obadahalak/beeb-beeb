@@ -92,10 +92,18 @@ class ProfileController extends Controller
 
 
     public function submitCart(){
-        auth('sanctum')->user()->carts()->update([
-            'in_cart'=>true,
-        ]);
-        
+        // auth('sanctum')->user()->carts()->update([
+        //     'in_cart'=>true,
+        // ]);
+
+    }
+
+    public function order(Request $request){
+        // $products=[
+        //     'products_id'=>11,
+        //     'quantity'=>2,
+        //     'addons'=>
+        // ];
     }
 
 

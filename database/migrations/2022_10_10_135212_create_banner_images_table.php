@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\OfferProducts;
+use App\Models\Products;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -16,8 +17,8 @@ return new class extends Migration
     {
         Schema::create('banner_images', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(OfferProducts::class)->constrained()->cascadeOnDelete()->cascadeOnUpdate();
-          // $table->string('image');
+            $table->foreignIdFor(Products::class)->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->string('image');
             $table->timestamps();
         });
     }
