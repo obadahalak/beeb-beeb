@@ -29,8 +29,8 @@ return new class extends Migration
             $table->integer('preparing_time')->nullable();
             $table->boolean('non_veg')->nullable();
             $table->json('intgredients')->nullable();
-            $table->json('size');
-            $table->json('addons')->nullable();
+           // $table->json('size');
+          //  $table->json('addons')->nullable();
             $table->boolean('status');
             $table->timestamps();
         });

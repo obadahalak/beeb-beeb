@@ -12,7 +12,7 @@ class Attribute extends Model
 
     protected $guarded=[];
 
-    public $translatable = ['type','key','value'];
+    public $translatable = ['key','value'];
 
 
 }

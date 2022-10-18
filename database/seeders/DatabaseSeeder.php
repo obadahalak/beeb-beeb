@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\Attribute;
 use App\Models\Owners;
 use App\Models\Drivers;
 use App\Models\Section;
@@ -24,7 +25,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-      Carts::factory(1)->create();
+       // Attribute::factory(3)->create();
+      //Carts::factory(1)->create();
        // OfferProducts::factory(5)->create();
      // Reviews::factory(10)->create();
        // Products::factory()->create();
