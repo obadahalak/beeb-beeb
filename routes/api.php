@@ -44,4 +44,7 @@ Route::controller(ProfileController::class)->middleware('auth:sanctum')->group(f
     Route::post('/like', 'likeUser');
     Route::get('/getLikes', 'getLikes');
     Route::post('/addToCart', 'addToCart');
+    Route::put('/removeCart/{id}', 'removeCart');
+    Route::put('/deleteCartUser', 'deleteCartUser');
+    Route::post('/submitCart', 'submitCart');
 });

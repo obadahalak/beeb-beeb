@@ -23,7 +23,7 @@ class Products extends Model  implements Likeable
 
     protected $guarded = [];
 
-    public $translatable = ['name', 'description', 'intgredients', 'size', 'addons'];
+    public $translatable = ['name', 'description', 'intgredients'];
 
     public function section()
     {

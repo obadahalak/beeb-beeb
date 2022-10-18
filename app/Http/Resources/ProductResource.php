@@ -4,6 +4,7 @@ namespace App\Http\Resources;
 
 use App\Http\enum\nameSections;
 use App\Http\Traits\rateCalculation;
+use App\Http\Resources\AttributeResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class ProductResource extends JsonResource
@@ -26,9 +27,8 @@ class ProductResource extends JsonResource
                 'discount_price' => $this->dicount_price,
                 'price' => $this->price,
                 'description' => $this->description,
-                'size' => $this->size,
-                'addons' => $this->addons,
                 'intgredients' => $this->intgredients,
+                'addons'=>AttributeResource::collection($this->attributes),
                 'rating' => $this->getRating(nameSections::product->value, $this->id),
                 'offer' => $this->offer->discount ?? false,
                 'image' => new ImageResource($this->image),
@@ -43,9 +43,8 @@ class ProductResource extends JsonResource
                 'discount_price' => $this->dicount_price,
                 'price' => $this->price,
                 'description' => $this->description,
-                'size' => $this->size,
-                'addons' => $this->addons,
                 'intgredients' => $this->intgredients,
+                'addons'=>AttributeResource::collection($this->attributes),
                 'rating' => $this->getRating(nameSections::product->value, $this->id),
                 'offer' => $this->offer->discount ?? false,
                 'image' => new ImageResource($this->image),
