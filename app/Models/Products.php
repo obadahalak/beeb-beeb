@@ -6,6 +6,7 @@ use App\Models\like;
 use App\Models\Photos;
 use App\Models\Section;
 use App\Contracts\Likeable;
+use App\Models\Attribute as ModelsAttribute;
 use App\Models\OfferProducts;
 use App\Models\Concerns\Likes;
 use App\Models\BeebBeebSections;
@@ -46,14 +47,16 @@ class Products extends Model  implements Likeable
         return $this->morphOne(Photos::class, 'photo');
     }
 
-   
+
     public function islike()
     {
       return    $this->morphOne(like::class, 'like')->select('is_like');
     }
 
 
-
+    public function attributes(){
+        return $this->hasMany(ModelsAttribute::class,'products_id');
+    }
 
     public function intgredients(): Attribute
     {

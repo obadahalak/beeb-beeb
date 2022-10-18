@@ -22,12 +22,12 @@ class ProfileController extends Controller
     use wishListService;
 
     ///Refactor
-    public function likeUser(LikeRequest $request){ 
+    public function likeUser(LikeRequest $request){
         auth('sanctum')->user()->like($request->likeable());
 
     }
 
-    ///refactoor to likes 
+    ///refactoor to likes
     public function getLikes()
     {
 
@@ -50,12 +50,12 @@ class ProfileController extends Controller
         $priceBeforOffer=Products::find($request->products_id)->price;
         $totalBeforOffer=$request->quantity * $priceBeforOffer;
        $offerProduct=Products::whereId($request->products_id)->with('offer:products_id,discount')->first()->offer->discount;
-       
+
        $afterOffer=$priceBeforOffer * $offerProduct / 100;
         return $afterOffer;
-        
-        
-        
+
+
+
     }
 
     public function removeCart()
