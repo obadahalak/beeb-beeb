@@ -18,9 +18,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class BeebBeebSections extends Model implements Likeable
 {
-    use HasFactory;
+  //  use HasFactory;
+
     use Likes;
+
     use HasFactory, HasTranslations;
+
     protected $guarded = [];
     public $translatable = ['name', 'description', 'address'];
 
@@ -42,7 +45,7 @@ class BeebBeebSections extends Model implements Likeable
     public function products(){
         return $this->hasMany(Products::class)->with('offer');
     }
-    
+
     public function islike()
     {
       return    $this->morphOne(like::class, 'like')->select('is_like');

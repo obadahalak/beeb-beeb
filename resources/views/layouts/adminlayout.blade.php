@@ -66,8 +66,8 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Options:</h6>
-                        <a class="collapse-item" href="{{ route('restList') }}">Resturant List</a>
-                        <a class="collapse-item" href="{{ route('restCreate') }}">Add Resturant</a>
+                        <a class="collapse-item" href="{{ route('indexRest') }}">Resturant List</a>
+                        <a class="collapse-item" href="{{ route('createRest') }}">Add Resturant</a>
                     </div>
                 </div>
             </li>
@@ -85,6 +85,21 @@
                         <h6 class="collapse-header">Custom options:</h6>
                         <a class="collapse-item" href="{{ url('owners') }}">owners List</a>
                         <a class="collapse-item" href="{{ url('owners/create') }}">add owner</a>
+
+                    </div>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUsers"
+                    aria-expanded="true" aria-controls="collapseUsers">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Users</span>
+                </a>
+                <div id="collapseUsers" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Options:</h6>
+                        <a class="collapse-item" href="{{ route('indexUser') }}">Users List</a>
 
                     </div>
                 </div>
