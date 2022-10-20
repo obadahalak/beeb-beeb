@@ -2,9 +2,10 @@
 
 namespace App\Observers;
 
-use App\Models\BeebBeebSections;
-use App\Models\OfferProducts;
 use App\Models\Products;
+use App\Models\OfferProducts;
+use App\Models\BeebBeebSections;
+use Illuminate\Support\Facades\Cache;
 
 class ProductObserver
 {
@@ -16,23 +17,27 @@ class ProductObserver
      */
     public function created(Products $products)
     {
-
-        $BeebSectino_id=$products->beeb_beeb_sections_id;
-
-        $getSection=BeebBeebSections::find($BeebSectino_id);
-
-        if(!($getSection->offer->status)){
-            return ;
-        }else{
-            $Offer=$getSection->offer;
-            $products->offer()->create([
-                    'code'=>'code'.time(),
-                    'discount'=>$Offer->offer,
-                    'expire_date'=>$Offer->expire_date,
-                    'status'=>true,
-            ]);
+        if (Cache::has('productSection_' . $products->beeb_beeb_sections_id)) {
+            Cache::forget('productSection_' . $products->beeb_beeb_sections_id);
+        } else if (Cache::has('productCategory_' . $products->category_products_id)) {
+            Cache::forget('productCategory_' . $products->category_products_id);
         }
 
+        $BeebSectino_id = $products->beeb_beeb_sections_id;
+
+        $getSection = BeebBeebSections::find($BeebSectino_id);
+
+        if (!($getSection->offer->status)) {
+            return;
+        } else {
+            $Offer = $getSection->offer;
+            $products->offer()->create([
+                'code' => 'code' . time(),
+                'discount' => $Offer->offer,
+                'expire_date' => $Offer->expire_date,
+                'status' => true,
+            ]);
+        }
     }
 
     /**
