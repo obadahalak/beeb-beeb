@@ -9,6 +9,7 @@ use App\Models\Products;
 use Illuminate\Http\Request;
 use App\Http\Requests\CartRequest;
 use App\Http\Requests\LikeRequest;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Http\Traits\wishListService;
 use PhpParser\Node\Expr\Cast\Double;
@@ -27,13 +28,13 @@ class ProfileController extends Controller
     public function likeUser(LikeRequest $request)
     {
         auth('sanctum')->user()->like($request->likeable());
-        return response()->json(['message' =>' like added successfully']);
+        return response()->json(['message' => ' like added successfully']);
     }
 
     ///refactoor to likes
     public function getLikes()
     {
-       return  Cache::remember('likesUser_'.auth('sanctum')->user()->id, 60 * 60, function (){
+        return  Cache::remember('likesUser_' . auth('sanctum')->user()->id, 60 * 60, function () {
 
             $product = ProductResource::collection(auth('sanctum')->user()->likeProducts);
 
@@ -50,8 +51,8 @@ class ProfileController extends Controller
     public function addToCart(CartRequest $request)
     {
 
-
         auth('sanctum')->user()->carts()->create($request->validated());
+
         return response()->json(['message' => 'Cart added successfully']);
 
         // return $request->all();
@@ -84,30 +85,29 @@ class ProfileController extends Controller
     public function deleteCartUser()
     {
 
-        if (auth('sanctum')->user()->carts->count()>0) {
+        if (auth('sanctum')->user()->carts->count() > 0) {
             auth('sanctum')->user()->carts()->delete();
             return response()->json(['message' => 'Deleted successful'], 200);
-        }else{
+        } else {
             return response()->json(['message' => 'User Cart is Empty'], 400);
-
         }
     }
 
 
-    public function submitCart(){
+    public function submitCart()
+    {
         // auth('sanctum')->user()->carts()->update([
         //     'in_cart'=>true,
         // ]);
 
     }
 
-    public function order(Request $request){
+    public function order(Request $request)
+    {
         // $products=[
         //     'products_id'=>11,
         //     'quantity'=>2,
         //     'addons'=>
         // ];
     }
-
-
 }

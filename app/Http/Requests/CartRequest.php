@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Products;
 use Illuminate\Foundation\Http\FormRequest;
 
 class CartRequest extends FormRequest
@@ -25,13 +26,22 @@ class CartRequest extends FormRequest
     {
 
         return [
-            'products_id'=>'bail|required|exists:products,id',
-            'quantity'=>'bail|required|integer|min:1',
-            'addons'=>'array',
-            'addons.add_id'=>'required|exists:attributes,id',
-            'addons.another'=>'string'
+            'products_id' => 'bail|required|exists:products,id',
+            'quantity' => 'bail|required|integer|min:1',
+            'addons' => 'array',
+            'addons.*' => 'required|exists:attributes,id',
+            'addons.another' => 'string'
         ];
     }
 
 
+    public function validated($key = null, $default = null)
+    {
+        return array_merge(
+            parent::validated() +
+                [
+                    'cart_user_id' => auth('sanctum')->user()->cartUser->id,
+                ]
+        );
+    }
 }

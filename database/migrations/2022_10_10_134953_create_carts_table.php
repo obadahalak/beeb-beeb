@@ -23,6 +23,9 @@ return new class extends Migration
             $table->integer('quantity')->default(1);
             $table->boolean('in_cart')->default(0);
             $table->json('addons')->nullable();
+            $table->double('ammount_after_discount');
+            $table->double('ammount_befor_discount');
+            $table->double('ammount_after_offer');
             $table->timestamps();
         });
     }

@@ -19,7 +19,7 @@ class Carts extends Model
         return $this->belongsTo(User::class);
     }
     public function product(){
-        return $this->belongsTo(Products::class);
+        return $this->belongsTo(Products::class,'products_id');
     }
 
     public function addons(): Attribute

@@ -90,7 +90,7 @@ class User extends Authenticatable
 
 
     public function carts(){
-        return $this->hasMany(Carts::class)->where('in_cart',false);
+        return $this->hasMany(Carts::class,'cart_user_id')->where('in_cart',false);
     }
 
     public function cartUser(){

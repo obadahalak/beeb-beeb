@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Models\Carts;
 use App\Models\Products;
+use App\Observers\CartsObserver;
 use App\Observers\ProductObserver;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -30,6 +32,7 @@ class EventServiceProvider extends ServiceProvider
     public function boot()
     {
         Products::observe(ProductObserver::class);
+        Carts::observe(CartsObserver::class);
 
     }
 
