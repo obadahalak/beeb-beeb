@@ -13,9 +13,11 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 
 Route::controller(SectionsController::class)->group(function () {
+
     Route::get('/sections', 'getSections');
+
     Route::get('/category-FromSectinId/{id}', 'getCategoryFromSectionId');
-    Route::get('/beebSection/{id}', 'beebBeebSection');
+    Route::get('/beebSection/{sectionid}', 'beebBeebSection');
     Route::get('/BeebHasOffer', 'getBeebBeebHasOffer');
     Route::get('/bannerImage','bannerImage');
     Route::post('/contactUs','contactUs');
@@ -23,23 +25,21 @@ Route::controller(SectionsController::class)->group(function () {
 
 Route::controller(ProductsController::class)->group(function () {
     Route::get('/ProductsFromBeebId/{id}', 'getProductsFromBeebSection');
-    Route::get('/ProductsHasOfferFromBeebId/{beebSectionId}', 'getProductsHasOfferFromBeebSection');
-    Route::get('/NewsProductsFromBeebId/{beebSectionId}', 'getNewsProductsFromBeebSection');
+    Route::get('/ProductsHasOfferFromBeebId/{id}', 'getProductsHasOfferFromBeebSection');
+    Route::get('/NewsProductsFromBeebId/{id}', 'getNewsProductsFromBeebSection');
     Route::get('/Products-From-CategoryId/{id}', 'getProductsFromCategoryId');
     Route::get('/Product-FromId/{id}', 'getProductFromId');
 });
 
 
-Route::controller(ProductsController::class)->group(function () {
-    Route::get('/test', 'testfunction');
-});
+
 
 ////////////// Auth User ////////////////////
 
 Route::controller(AuthUserController::class)->group(function () {
 
     Route::post('/auth-user', 'auth');
-    Route::post('/createLocations', 'createLocations')->middleware('auth:sanctum');
+    Route::post('/createUserLocations', 'createLocations')->middleware('auth:sanctum');
 });
 
 Route::controller(ProfileController::class)->middleware('auth:sanctum')->group(function () {

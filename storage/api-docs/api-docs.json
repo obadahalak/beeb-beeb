@@ -1,0 +1,421 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "beeb-beeb-app api Documentation",
+        "description": "base url : (https://aurora-team.com/beeb-beeb-App/{$lan})   lang values (en ,ar , ku )  ",
+        "contact": {
+            "email": "obadahalak538@gmail.com"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://127.0.0.1:8000/en",
+            "description": "Demo API Server"
+        }
+    ],
+    "paths": {
+        "/createUserLocations": {
+            "post": {
+                "tags": [
+                    "userLocations"
+                ],
+                "summary": "Locations",
+                "description": "token is required ",
+                "operationId": "Select user Locations",
+                "requestBody": {
+                    "description": "",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "data": {
+                                        "type": "array",
+                                        "items": {
+                                            "properties": {
+                                                "location": {
+                                                    "type": "string",
+                                                    "example": " user location"
+                                                },
+                                                "lat": {
+                                                    "type": "number",
+                                                    "format": "double",
+                                                    "example": "36.2840492"
+                                                },
+                                                "long": {
+                                                    "type": "number",
+                                                    "format": "double",
+                                                    "example": "33.5180273"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successful operation"
+                    }
+                }
+            }
+        },
+        "/ProductsFromBeebId/{id}": {
+            "get": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Get list of Products",
+                "description": "Returns list of Products  , token is not required",
+                "operationId": "getProducts",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "beeb-section-id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            }
+        },
+        "/ProductsHasOfferFromBeebId/{id}": {
+            "get": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Get list of Products has offers",
+                "description": "Returns list of Products  , token is not required",
+                "operationId": "Get Products  Has Offer",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "beeb-section-id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            }
+        },
+        "/NewsProductsFromBeebId/{id}": {
+            "get": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Get list of news-Products ",
+                "description": "Returns list of Products  , token is not required",
+                "operationId": "Get-news-Products",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "beeb-section-id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            }
+        },
+        "/Products-From-CategoryId/{id}": {
+            "get": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Get list of Products from Categoryid ",
+                "description": "Returns list of Products  , token is not required",
+                "operationId": "get-Products",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "beeb-section-id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            }
+        },
+        "/Product-FromId/{id}": {
+            "get": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Get  Product from id ",
+                "description": "Returns  Product  , token is not required",
+                "operationId": "get-Product ",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ProductId",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "404": {
+                        "description": "Product Not Found"
+                    }
+                }
+            }
+        },
+        "/like": {
+            "post": {
+                "tags": [
+                    "wishlist"
+                ],
+                "summary": "create like",
+                "description": "token is  required ",
+                "operationId": "wishlist asd",
+                "requestBody": {
+                    "description": "type values( product or  beebSection )",
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "type",
+                                    "id"
+                                ],
+                                "properties": {
+                                    "type": {
+                                        "type": "text",
+                                        "example": "product"
+                                    },
+                                    "id": {
+                                        "type": "integer",
+                                        "example": "1"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {}
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successful operation"
+                    }
+                }
+            }
+        },
+        "/getLikes": {
+            "get": {
+                "tags": [
+                    "wishlist"
+                ],
+                "summary": "Get list of wishlist ",
+                "description": "Returns list of wishlist",
+                "operationId": "wishlist",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            }
+        },
+        "/sections": {
+            "get": {
+                "tags": [
+                    " Main sections"
+                ],
+                "summary": "Get list of sections",
+                "description": "Returns list of sections",
+                "operationId": "getSections",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            }
+        },
+        "/category-FromSectinId/{id}": {
+            "get": {
+                "tags": [
+                    "Category"
+                ],
+                "summary": "Get list of Category ",
+                "description": "Returns list of Category",
+                "operationId": "get Category",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Section-id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            }
+        },
+        "/beebSection/{sectionid}": {
+            "get": {
+                "tags": [
+                    "beeb-beeb-Section"
+                ],
+                "summary": "Get list of beebSection ",
+                "description": "beeb-beeb-section : Is it a store, mall, or restaurant",
+                "operationId": "get Beeb beeb section from main-section-id",
+                "parameters": [
+                    {
+                        "name": "sectionid",
+                        "in": "path",
+                        "description": "Section-id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            }
+        },
+        "/BeebHasOffer": {
+            "get": {
+                "tags": [
+                    "beeb-beeb-Section"
+                ],
+                "summary": "Get list of beebSection ",
+                "description": "beeb-beeb-section : Is it a store, mall, or restaurant   ",
+                "operationId": "get Beeb beeb section Has offer ",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            }
+        },
+        "/bannerImage": {
+            "get": {
+                "tags": [
+                    "bannerImage"
+                ],
+                "summary": "Get list of bannerImage ",
+                "description": " ",
+                "operationId": "get banner-Image ",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            }
+        },
+        "/contactUs": {
+            "post": {
+                "tags": [
+                    "contactUs"
+                ],
+                "summary": "contact-us",
+                "description": "token is not required ",
+                "operationId": "send Message to support",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "phone",
+                                    "message"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "text"
+                                    },
+                                    "phone": {
+                                        "type": "text"
+                                    },
+                                    "message": {
+                                        "type": "password"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {}
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successful operation"
+                    }
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Projects",
+            "description": "API Endpoints of Projects"
+        }
+    ],
+    "components": {
+        "securitySchemes": {
+            "sanctum": {
+                "type": "apiKey",
+                "description": "Enter token in format (Bearer <token>)",
+                "name": "Authorization",
+                "in": "header"
+            }
+        }
+    },
+    "security": [
+        {
+            "sanctum": []
+        }
+    ]
+}

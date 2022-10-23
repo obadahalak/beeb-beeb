@@ -24,14 +24,62 @@ class ProfileController extends Controller
 {
     use wishListService;
 
-    ///Refactor
+
+
+    /**
+     * @OA\Post(
+     * path="/like",
+     * operationId="wishlist asd",
+     * tags={"wishlist"},
+     * summary="create like",
+     * description="token is  required ",
+     *     @OA\RequestBody(
+     *         @OA\JsonContent(),
+     *   required = true,
+     *        description = "type values( product or  beebSection )",
+     *         @OA\MediaType(
+     *            mediaType="multipart/form-data",
+
+     *            @OA\Schema(
+     *               type="object",
+     *               required={"type","id" },
+
+     *               @OA\Property(property="type", type="text" ,example="product" ),
+     *               @OA\Property(property="id", type="integer", example="1"),
+     *
+     *            ),
+     *        ),
+     *    ),
+     *      @OA\Response(
+     *          response=201,
+     *          description="Successful operation",
+
+     *       ),
+     *
+     *     )
+     */
     public function likeUser(LikeRequest $request)
     {
         auth('sanctum')->user()->like($request->likeable());
         return response()->json(['message' => ' like added successfully']);
     }
 
-    ///refactoor to likes
+     /**
+     * @OA\Get(
+     *      path="/getLikes",
+     *      operationId="wishlist",
+     *      tags={"wishlist"},
+     *      summary="Get list of wishlist ",
+     *      description="Returns list of wishlist",
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+
+     *       ),
+     *
+     *     )
+     */
+
     public function getLikes()
     {
         return  Cache::remember('likesUser_' . auth('sanctum')->user()->id, 60 * 60, function () {

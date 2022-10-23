@@ -24,10 +24,10 @@ class userLocationRequest extends FormRequest
     public function rules()
     {
         return [
-            'data'=>'array',
-            'data.*.location'=>'required',
-            'data.*.lat'=>'required',
-            'data.*.long'=>'required',
+            'data' => 'array',
+            'data.*.location' => 'required',
+            'data.*.lat' => 'required',
+            'data.*.long' => 'required',
         ];
     }
 }

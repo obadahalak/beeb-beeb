@@ -2,6 +2,7 @@
 
 use App\Models\Section;
 use Illuminate\Support\Facades\Facade;
+use L5Swagger\L5SwaggerServiceProvider;
 
 return [
 
@@ -195,6 +196,9 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+
+        L5SwaggerServiceProvider::class,
+
 
     ],
 
