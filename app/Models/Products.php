@@ -19,7 +19,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Products extends Model  implements Likeable
 {
-    use HasFactory, HasTranslations , Likes;
+    use HasFactory, HasTranslations, Likes;
 
     protected $guarded = [];
 
@@ -50,13 +50,37 @@ class Products extends Model  implements Likeable
 
     public function islike()
     {
-      return    $this->morphOne(like::class, 'like')->select('is_like');
+        return    $this->morphOne(like::class, 'like')->select('is_like');
     }
 
 
-    public function attributes(){
-        return $this->hasMany(ModelsAttribute::class,'products_id');
+    public function attributes()
+    {
+        return $this->hasMany(ModelsAttribute::class, 'products_id');
     }
+
+
+    public function reviews()
+    {
+        return  $this->hasMany(Reviews::class, 'products_id');
+    }
+
+    public function Rating()
+    {
+        return  $this->hasMany(Reviews::class, 'products_id');
+    }
+
+    public function scopeAvg($query, $rate)
+    {
+
+        return $query->withAvg(['Rating as rate' => function ($q) use ($rate) {
+
+            $q->where('rate', '>=', $rate);
+        }], 'rate')->whereHas('Rating', function ($q) use ($rate) {
+            $q->where('rate', '>=', $rate);
+        })->orderBy('rate', 'DESC');
+    }
+
 
     public function intgredients(): Attribute
     {
@@ -82,10 +106,21 @@ class Products extends Model  implements Likeable
         );
     }
 
+
+
+
+
+
     public static function booted()
     {
         static::addGlobalScope(new isActiveScope);
     }
+
+
+
+
+
+
 
     public static   function model(): Model
     {

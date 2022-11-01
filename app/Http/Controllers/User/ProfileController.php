@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Http\Traits\wishListService;
 use PhpParser\Node\Expr\Cast\Double;
+use App\Http\Resources\CartsResource;
 use Illuminate\Support\Facades\Cache;
 use App\Http\Resources\ProductResource;
 use App\Http\Resources\BeebBeebResource;
@@ -64,7 +65,7 @@ class ProfileController extends Controller
         return response()->json(['message' => ' like added successfully']);
     }
 
-     /**
+    /**
      * @OA\Get(
      *      path="/getLikes",
      *      operationId="wishlist",
@@ -92,8 +93,12 @@ class ProfileController extends Controller
         });
     }
 
-    public function removeWithList()
+    public function removeWithList(LikeRequest $request)
     {
+        if (auth('sanctum')->user()->unlilike($request->likeable())) {
+
+            return response()->json(['message' => 'deleted successfully']);
+        }
     }
 
     public function addToCart(CartRequest $request)
@@ -102,29 +107,28 @@ class ProfileController extends Controller
         auth('sanctum')->user()->carts()->create($request->validated());
 
         return response()->json(['message' => 'Cart added successfully']);
+    }
 
-        // return $request->all();
-        //    return  auth('sanctum')->user()->carts;
-        //     $priceBeforOffer=Products::find($request->products_id)->price;
-        //     $totalBeforOffer=$request->quantity * $priceBeforOffer;
-        //    $offerProduct=Products::whereId($request->products_id)->with('offer:products_id,discount')->first()->offer->discount;
+    public function getCart()
+    {
 
-        //    $afterOffer=$priceBeforOffer * $offerProduct / 100;
-        //     return $afterOffer;
-
+        $sumTotal = auth('sanctum')->user()->carts->sum('ammount_after_offer');
+        $userCart = CartsResource::collection(auth('sanctum')->user()->carts);
+        return response()->json(['cart' => $userCart, 'total' => $sumTotal]);
     }
 
     public function removeCart($cart)
     {
         $cartUser = auth('sanctum')->user()->carts->find($cart);
+
         if ($cartUser) {
             if (
-                auth('sanctum')->user()->carts->find($cart)->user_id
+                auth('sanctum')->user()->carts->find($cart)->cart_user_id
                 == auth('sanctum')->id()
             ) {
                 Carts::find($cart)->delete();
+                return response()->json(['message' => 'Deleted successful'], 200);
             }
-            return response()->json(['message' => 'Deleted successful'], 200);
         } else {
             return response()->json(['message' => 'cart Not Found'], 404);
         }

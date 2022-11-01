@@ -74,6 +74,14 @@ class User extends Authenticatable
         return $this;
     }
 
+    public function unlilike(Likeable  $likeable)
+    {
+        if ($this->hasLiked($likeable)) {
+            $likeable->likes()->whereHas('user',fn($q)=>$q->whereId($this->id))->first()->delete();
+        }
+
+    }
+
 
     public function likes()
     {
@@ -90,10 +98,13 @@ class User extends Authenticatable
 
 
     public function carts(){
-        return $this->hasMany(Carts::class,'cart_user_id')->where('in_cart',false);
+        return $this->hasMany(Carts::class,'cart_user_id')->where('in_cart',false)->with('product');
     }
 
     public function cartUser(){
         return $this->hasOne(cartUser::class,'user_id');
+    }
+    public function userlocation(){
+        return $this->hasOne(cartUser::class,'user_id')->with('user_location');
     }
 }
